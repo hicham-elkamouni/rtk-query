@@ -1,4 +1,5 @@
 import './App.css';
+import { Post } from './components/Post';
 import { usePostQuery, usePostsQuery } from './services/postsApi'
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
           data.map(post => {
           return  <div key={post.id}>
                     <h2>{post.title}</h2>
-                    {/* <p><PostDetail id = { post.id }/></p> */}
+                    <p><Post id={ post.id }/></p>
                   </div>
           })
         }
@@ -25,13 +26,6 @@ function App() {
       }
     </div>
   );
-}
-
-export const PostDetail = ({id} : { id : string}) => {
-  const { data } = usePostQuery(id)
-  return (
-    <pre>{ JSON.stringify(data, undefined, 2)}</pre>
-  )
 }
 
 export default App;
