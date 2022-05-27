@@ -1,6 +1,7 @@
 import './App.css';
+import { AddPost } from './components/AddPost';
 import { Post } from './components/Post';
-import { usePostQuery, usePostsQuery } from './services/postsApi'
+import { usePostsQuery } from './services/postsApi'
 
 function App() {
   const { data , error, isLoading, isFetching, isSuccess } = usePostsQuery();
@@ -8,6 +9,7 @@ function App() {
   return (
     <div className="App">
       <h1>React Redux Toolkit RTK Query Tutorial</h1>
+      <AddPost/>
       {isLoading && <p>Loading...</p>}
       {isFetching && <p>Fetching...</p>}
       {error && <p>something went wrong</p>}

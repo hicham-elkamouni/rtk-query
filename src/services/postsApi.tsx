@@ -6,6 +6,7 @@ export const postsApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl : "https://jsonplaceholder.typicode.com"
     }),
+    
     endpoints : (builder) => ({
         posts : builder.query<Post[], void>({
             query : () => '/posts',
@@ -23,7 +24,7 @@ export const postsApi = createApi({
         updatePost : builder.mutation<void, Post>({
             query : ({ id, ...rest}) => ({
                 url : `/posts/${id}`,
-                method : 'PUT',
+                method : 'POST',
                 body : rest,
             }),
         }),
@@ -31,9 +32,10 @@ export const postsApi = createApi({
             query : (id) => ({
                 url : `/posts/${id}`,
                 method : 'DELETE',
+            }),
         }),
-    })
 
+    }),
 })
 
-export const { usePostsQuery, usePostQuery } = postsApi
+export const { usePostsQuery, usePostQuery, useAddPostMutation, useUpdatePostMutation, useDeletePostMutation } = postsApi
