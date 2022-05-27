@@ -12,7 +12,26 @@ export const postsApi = createApi({
         }),
         post : builder.query<Post, number>({
             query : (id) => `/posts/${id}`,
-        })
+        }),
+        addPost : builder.mutation<void, Post>({
+            query : (post) => ({
+                url : '/posts',
+                method : 'POST',
+                body : post,
+            }),
+        }),
+        updatePost : builder.mutation<void, Post>({
+            query : ({ id, ...rest}) => ({
+                url : `/posts/${id}`,
+                method : 'PUT',
+                body : rest,
+            }),
+        }),
+        deletePost : builder.mutation<void, number>({
+            query : (id) => ({
+                url : `/posts/${id}`,
+                method : 'DELETE',
+        }),
     })
 
 })
