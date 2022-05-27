@@ -1,5 +1,5 @@
 import './App.css';
-import { usePostsQuery } from './services/postsApi'
+import { usePostQuery, usePostsQuery } from './services/postsApi'
 
 function App() {
   const { data , error, isLoading, isFetching, isSuccess } = usePostsQuery();
@@ -16,7 +16,7 @@ function App() {
           data.map(post => {
           return  <div key={post.id}>
                     <h2>{post.title}</h2>
-                    <p>{post.body}</p>
+                    {/* <p><PostDetail id = { post.id }/></p> */}
                   </div>
           })
         }
@@ -25,6 +25,13 @@ function App() {
       }
     </div>
   );
+}
+
+export const PostDetail = ({id} : { id : string}) => {
+  const { data } = usePostQuery(id)
+  return (
+    <pre>{ JSON.stringify(data, undefined, 2)}</pre>
+  )
 }
 
 export default App;
